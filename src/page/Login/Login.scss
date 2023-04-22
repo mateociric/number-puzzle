@@ -1,0 +1,57 @@
+@import 'style/variable';
+
+.login-form {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+
+    & input {
+        width: 65%;
+        border: .1rem solid $col-input-border;
+        padding-left: 1.5rem;
+        font-size: $fsize-input;
+        line-height: 5rem;
+        outline: none;
+        color: $fcolor-input;
+
+        &:first-child {
+            margin-bottom: .5rem;
+        }
+
+        &::placeholder {
+            color: $fcolor-input;
+            opacity: .7;
+        }
+    }
+
+
+    & button {
+        margin-top: 5rem;
+        border: none;
+        padding: 1.5rem 3rem;
+        color: $fcolor-button;
+        background-color: $col-button;
+
+        &:active {
+            scale: .97;
+        }
+    }
+
+    p {
+        margin-top: 1rem;
+        font-size: $fsize_p;
+        color: $fcolor-p;
+    }
+
+    .warning {
+        border-color: red;
+    }
+
+}
+
+
+//https://colorhunt.co/palettes/cream
+//https://www.youtube.com/watch?v=G_y61k-4i6E&list=PL4cUxeGkcC9iHDnQfTHEVVceOEBsOf07i&index=7

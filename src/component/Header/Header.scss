@@ -1,0 +1,14 @@
+@import 'style/variable';
+
+.header {
+    width: 100%;
+    line-height: 8rem;
+    text-align: center;
+    background-color: $col-header;
+
+    &__title {
+        font-size: $fsize-header;
+        text-align: center;
+        color: $col-font-header;
+    }
+}

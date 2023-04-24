@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
 import 'page/Login/Login.scss';
 import Modal from 'component/Modal/Modal';
-import Game from 'page/Game/Game';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import checkLogin from 'page/Login/utility/check-login';
 
-function SignIn() {
+function Login() {
     const navigate = useNavigate();
     const [message, setMessage] = useState<string>('');
     const formik = useFormik({
@@ -28,24 +28,12 @@ function SignIn() {
             fetch('http://localhost:4000/users')
                 .then(response => response.json())
                 .then(data => {
-                    for (let i = 0; i < data.length; i++) {
-                        if (data[i].userName.toLowerCase() === values.userName.toLowerCase()) {
-                            if (data[i].password === values.password) {
-                                console.log('you are logged');
-                                navigate('/Game');
-                                break;
-                            } else {
-                                setMessage(() => 'wrong password')
-                                break;
-                            }
-                        }
-                        setMessage(() => 'user don\'t exists');
-                    }
+                    checkLogin(data, values, navigate, setMessage);
                 })
         }
     });
-    const userNameWarning = formik.touched.userName && formik.errors.userName ? 'warning' : '';
-    const passwordWarning = formik.touched.password && formik.errors.password ? 'warning' : '';
+    const userNameWarningBorder = formik.touched.userName && formik.errors.userName ? 'warning' : '';
+    const passwordWarningBorder = formik.touched.password && formik.errors.password ? 'warning' : '';
 
     function clearModal() {
         setMessage(() => '');
@@ -53,8 +41,9 @@ function SignIn() {
 
     return (
         <>
+            {/* modal will be shown if message is not '' */}
             {message && <Modal onClick={clearModal} msg={message} />}
-            <form onSubmit={formik.handleSubmit} className='login-form fixed-center'>
+            <form onSubmit={formik.handleSubmit} className='login-form fixed-center flex-column-center'>
                 <input
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
@@ -62,7 +51,7 @@ function SignIn() {
                     type="text"
                     id='userName'
                     placeholder='username'
-                    className={userNameWarning}
+                    className={userNameWarningBorder}
                 />
                 <input
                     onChange={formik.handleChange}
@@ -71,14 +60,14 @@ function SignIn() {
                     type="text"
                     id='password'
                     placeholder='password'
-                    className={passwordWarning}
+                    className={passwordWarningBorder}
                 />
 
-                <button type='submit'>SIGN IN</button>
-                <p>don't have account?</p>
+                <button type='submit'>LOGIN</button>
+                <NavLink to='Register'>don't have account?</NavLink>
             </form>
         </>
     )
 }
 
-export default SignIn;
+export default Login;

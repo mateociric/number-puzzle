@@ -2,3 +2,37 @@ body {
     font-family: $font-main;
     background-color: $col-body;
 }
+
+input {
+    width: 65%;
+    border: .1rem solid $col-input-border;
+    padding-left: 1.5rem;
+    font-size: $fsize-input;
+    line-height: 5rem;
+    outline: none;
+    color: $fcolor-input;
+}
+
+button {
+    border: none;
+    padding: 1.5rem 3rem;
+    color: $fcolor-button;
+    background-color: $col-button;
+
+    &:active {
+        scale: .95;
+    }
+}
+
+a {
+    margin: 1rem 0;
+    font-size: $fsize_a;
+    color: $fcolor-a;
+    text-decoration: none;
+    letter-spacing: 0rem;
+    transition: letter-spacing .5s;
+
+    &:hover {
+        letter-spacing: .25rem;
+    }
+}

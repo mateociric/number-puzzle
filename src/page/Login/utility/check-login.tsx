@@ -1,6 +1,11 @@
 import TFormikValues from "../model/formik-values";
 
-function checkLogin(data: Array<TFormikValues>, values: TFormikValues, navigateHook: Function, messageHook: Function) {
+function checkLogin(
+    data: Array<TFormikValues>, 
+    values: TFormikValues, 
+    navigateHook: Function, 
+    setMessageHook: Function, 
+    setTruePasswordHook: Function) {
     for (let i = 0; i < data.length; i++) {
         if (data[i].userName.toLowerCase() === values.userName.toLowerCase()) {
             if (data[i].password === values.password) {
@@ -8,11 +13,12 @@ function checkLogin(data: Array<TFormikValues>, values: TFormikValues, navigateH
                 navigateHook('/Game');
                 break;
             } else {
-                messageHook(() => 'wrong password')
+                setMessageHook(() => 'wrong password');
+                setTruePasswordHook(() => data[i].password)
                 break;
             }
         }
-        messageHook(() => 'user don\'t exists');
+        setMessageHook(() => 'user don\'t exists');
     }
 }
 

@@ -8,7 +8,10 @@ import checkLogin from 'page/Login/utility/check-login';
 
 function Login() {
     const navigate = useNavigate();
-    const [message, setMessage] = useState<string>('');
+    // '' means that modal will not be shown
+    const [messageForModal, setMessageForModal] = useState<string>('');
+    // if password is wrong, true password will be sent by email
+    const [truePassword, setTruePassword] = useState<number>(0);
     const formik = useFormik({
         initialValues: {
             userName: '',
@@ -28,7 +31,7 @@ function Login() {
             fetch('http://localhost:4000/users')
                 .then(response => response.json())
                 .then(data => {
-                    checkLogin(data, values, navigate, setMessage);
+                    checkLogin(data, values, navigate, setMessageForModal, setTruePassword);
                 })
         }
     });
@@ -36,13 +39,12 @@ function Login() {
     const passwordWarningBorder = formik.touched.password && formik.errors.password ? 'warning' : '';
 
     function clearModal() {
-        setMessage(() => '');
+        setMessageForModal(() => '');
     }
 
     return (
         <>
-            {/* modal will be shown if message is not '' */}
-            {message && <Modal onClick={clearModal} msg={message} />}
+            {messageForModal && <Modal onClick={clearModal} msg={messageForModal} />}
             <form onSubmit={formik.handleSubmit} className='login-form fixed-center flex-column-center'>
                 <input
                     onChange={formik.handleChange}

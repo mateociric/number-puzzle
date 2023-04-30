@@ -1,4 +1,3 @@
-import React from 'react'
 import { NavLink } from 'react-router-dom';
 import 'page/PasswordRest/PasswordRest.scss';
 import { useFormik } from 'formik';
@@ -13,16 +12,18 @@ function PasswordRest() {
         validationSchema: Yup.object({
             email: Yup.string().email('Invalid email').required('Required'),
         }),
-        onSubmit: (values, event) => {
-            sendEmail(event);
+        onSubmit: (values, event: any) => {
+            sendEmail(event)
         }
     })
     const emailWarningBorder = formik.touched.email && formik.errors.email ? 'warning' : '';
 
     function sendEmail(event: any) {
-        event.preventDefault();
-
-        emailjs.sendForm('default_service', 'template_q07gxe9', event.target, 'TZ6ZvWvyMUYxZIQ9I')
+        const templateParams = {
+            name: 'Mateo',
+            password: 12345,
+        };
+        emailjs.send('default_service', 'template_q07gxe9', templateParams, 'TZ6ZvWvyMUYxZIQ9I')
             .then((result) => {
                 console.log(result.text);
             }, (error) => {
@@ -41,7 +42,7 @@ function PasswordRest() {
                 placeholder='enter your email address'
                 className={emailWarningBorder}
             />
-            <button>REST PASSWORD</button>
+            <button type='submit'>REST PASSWORD</button>
             <NavLink to='/'>back to login</NavLink>
 
         </form>

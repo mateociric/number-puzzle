@@ -1,0 +1,27 @@
+@import 'style/variable';
+
+.register-form {
+    width: 25%;
+
+    & input {
+
+        &:first-child {
+            margin-bottom: .5rem;
+        }
+
+        &::placeholder {
+            color: $fcolor-input;
+            opacity: .7;
+        }
+    }
+
+    & button {
+        margin-top: 5rem;
+
+    }
+
+    .warning {
+        border-color: red;
+    }
+
+}

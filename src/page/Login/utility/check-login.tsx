@@ -1,4 +1,4 @@
-import TFormikValues from "../model/formik-values";
+import TFormikValues from "../../model/formik-values";
 
 function checkLogin(
     data: Array<TFormikValues>, 

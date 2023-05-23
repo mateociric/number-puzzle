@@ -1,50 +1,26 @@
 import React, { useState } from 'react';
 import { useNavigate, NavLink } from 'react-router-dom';
+import { useFormik } from 'formik';
 import 'page/Login/Login.scss';
 import Modal from 'component/Modal/Modal';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import checkLogin from 'page/Login/utility/check-login';
+import validationLogin from 'page/Login/utility/validation-login';
+import modalParamsInitial from 'page/utility/modal-params-initial';
 
 function Login() {
+    const [modalParams, setModalParams] = useState(modalParamsInitial);
     const navigate = useNavigate();
-    // '' means that modal will not be shown
-    const [messageForModal, setMessageForModal] = useState<string>('');
-    // if password is wrong, true password will be sent by email
-    const [truePassword, setTruePassword] = useState<number>(0);
-    const formik = useFormik({
-        initialValues: {
-            userName: '',
-            password: '',
-        },
-        validationSchema: Yup.object({
-            userName: Yup.string()
-                .min(2, 'min is 2 chr')
-                .max(15, 'max is 15 chr')
-                .required('Please fill username'),
-            password: Yup.string()
-                .min(5, 'min is 5 chr')
-                .max(15, 'max is 15 chr')
-                .required('Please fill password'),
-        }),
-        onSubmit: (values: any) => {
-            fetch('http://localhost:4000/users')
-                .then(response => response.json())
-                .then(data => {
-                    checkLogin(data, values, navigate, setMessageForModal, setTruePassword);
-                })
-        }
-    });
+
+    const formik = validationLogin(useFormik, setModalParams, navigate);
     const userNameWarningBorder = formik.touched.userName && formik.errors.userName ? 'warning' : '';
     const passwordWarningBorder = formik.touched.password && formik.errors.password ? 'warning' : '';
 
-    function clearModal() {
-        setMessageForModal(() => '');
+    function displayModal() {
+        setModalParams(modalParamsInitial);
     }
 
     return (
         <>
-            {messageForModal && <Modal onClick={clearModal} msg={messageForModal} />}
+            {modalParams.title !== '' && <Modal onClick={displayModal} modalParams={modalParams} />}
             <form onSubmit={formik.handleSubmit} className='login-form fixed-center flex-column-center'>
                 <input
                     onChange={formik.handleChange}

@@ -13,7 +13,7 @@ function Header() {
         case '/Register':
             title = 'REGISTER';
             break;
-        case '/PasswordRest':
+        case '/PasswordRecovery':
             title = 'PASSWORD RESET';
             break;
         case '/Game':

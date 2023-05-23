@@ -1,15 +1,16 @@
-import React from 'react';
 import 'component/Modal/Overlay.scss';
 import { NavLink } from 'react-router-dom';
+import TModalParams from 'page/model/modal-params';
 
-function Overlay(props: { msg: string, onClick: Function }) {
+function Overlay(props: { onClick: Function, modalParams: TModalParams }) {
+
     return (
         <div className='overlay fixed-center'>
-            <h1>LOGIN ERROR</h1>
-            <p>{props.msg}</p>
+            <h1>{props.modalParams['title']}</h1>
+            <p>{props.modalParams['message']}</p>
             <button onClick={() => props.onClick()}>OK</button>
-            <NavLink to='PasswordRest'>forgot password?</NavLink>
-        </div>
+            <NavLink to={props.modalParams['navLinkPath']} state={{userName: props.modalParams.userName, truePassword: props.modalParams.truePassword}} > { props.modalParams['navLinkText'] }</NavLink>
+        </div >
     )
 }
 

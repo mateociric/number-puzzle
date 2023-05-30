@@ -4,10 +4,10 @@ import { useFormik } from 'formik';
 import 'page/Login/Login.scss';
 import Modal from 'component/Modal/Modal';
 import validationLogin from 'page/Login/utility/validation-login';
-import modalParamsInitial from 'page/utility/modal-params-initial';
+import { initial } from 'page/utility/modal-params';
 
 function Login() {
-    const [modalParams, setModalParams] = useState(modalParamsInitial);
+    const [modalParams, setModalParams] = useState(initial);
     const navigate = useNavigate();
 
     const formik = validationLogin(useFormik, setModalParams, navigate);
@@ -15,7 +15,7 @@ function Login() {
     const passwordWarningBorder = formik.touched.password && formik.errors.password ? 'warning' : '';
 
     function displayModal() {
-        setModalParams(modalParamsInitial);
+        setModalParams(initial);
     }
 
     return (

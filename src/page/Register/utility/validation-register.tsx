@@ -1,5 +1,21 @@
 import * as Yup from 'yup';
 import TFormikValues from "page/model/formik-values";
+import { fetchError } from 'page/utility/modal-params';
+import TModalParams from 'page/model/modal-params';
+
+const registerError: TModalParams = {
+    title: 'REGISTER ERROR',
+    message: 'This username is already exists.',
+    navLinkPath: '',
+    navLinkText: '',
+}
+
+const registerSuccessful: TModalParams = {
+    title: 'REGISTER SUCCESSFUL',
+    message: 'You are registered.',
+    navLinkPath: '/Login',
+    navLinkText: 'back to login page',
+}
 
 function validationRegister(formikHook: Function, modalParamsHook: Function) {
     const formikRegister = formikHook({
@@ -31,22 +47,15 @@ function validationRegister(formikHook: Function, modalParamsHook: Function) {
                             body: JSON.stringify({ userName: formikRegister.values.userName, password: formikRegister.values.password })
                         }
                         fetch('http://localhost:4000/users', newUser)
-                        modalParamsHook({
-                            title: 'REGISTER SUCCESSFUL',
-                            message: 'You are registered.',
-                            navLinkPath: '/Login',
-                            navLinkText: 'back to login page',
-                        });
+                        modalParamsHook(() => registerSuccessful);
                     } else {
-                        modalParamsHook({
-                            title: 'REGISTER ERROR',
-                            message: 'This username is already exists.',
-                            navLinkPath: '',
-                            navLinkText: '',
-                        })
+                        modalParamsHook(() => registerError)
                     }
-                });
-                formikRegister.resetForm({values: ''});
+                })
+                .catch(() => {
+                    modalParamsHook(() => fetchError);
+                })
+            formikRegister.resetForm({ values: '' });
         }
     });
 

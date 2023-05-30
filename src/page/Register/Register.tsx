@@ -4,18 +4,18 @@ import { useFormik } from 'formik';
 import 'page/Register/Register.scss'
 import Modal from 'component/Modal/Modal';
 import validationRegister from './utility/validation-register';
-import modalParamsInitial from 'page/utility/modal-params-initial';
+import { initial } from 'page/utility/modal-params';
 
 function Register() {
 
-    const [modalParams, setModalParams] = useState(modalParamsInitial);
+    const [modalParams, setModalParams] = useState(initial);
 
     const formik = validationRegister(useFormik, setModalParams);
     const userNameWarningBorder = formik.touched.userName && formik.errors.userName ? 'warning' : '';
     const passwordWarningBorder = formik.touched.password && formik.errors.password ? 'warning' : '';
 
     function displayModal() {
-        setModalParams(modalParamsInitial);
+        setModalParams(initial);
     }
 
     return (

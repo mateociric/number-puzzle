@@ -5,17 +5,17 @@ import 'page/PasswordRecovery/PasswordRecovery.scss';
 import Modal from 'component/Modal/Modal';
 import sendEmail from 'page/PasswordRecovery/utility/send-email';
 import validationPasswordRecovery from './utility/validation-passwordrecovery';
-import modalParamsInitial from 'page/utility/modal-params-initial';
+import { initial } from 'page/utility/modal-params';
 
 function PasswordRecovery() {
-    const [modalParams, setModalParams] = useState(modalParamsInitial);
+    const [modalParams, setModalParams] = useState(initial);
     const location = useLocation();
     const formik = validationPasswordRecovery(useFormik, (event: any) => sendEmail(formik.values.email, location.state.userName, location.state.truePassword, setModalParams))
 
     const emailWarningBorder = formik.touched.email && formik.errors.email ? 'warning' : '';
 
     function displayModal() {
-        setModalParams(modalParamsInitial);
+        setModalParams(initial);
     }
 
     return (

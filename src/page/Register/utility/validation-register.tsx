@@ -23,7 +23,7 @@ function validationRegister(formikHook: Function, modalParamsHook: Function) {
                 .then((data: Array<TFormikValues>) => {
                     const userNameAlreadyExists: boolean = data.some(el => {
                         return el.userName.toLocaleLowerCase() === values.userName.toLocaleLowerCase();
-                    })
+                    });
                     if (!userNameAlreadyExists) {
                         const newUser = {
                             method: 'POST',
@@ -36,7 +36,7 @@ function validationRegister(formikHook: Function, modalParamsHook: Function) {
                             message: 'You are registered.',
                             navLinkPath: '/Login',
                             navLinkText: 'back to login page',
-                        })
+                        });
                     } else {
                         modalParamsHook({
                             title: 'REGISTER ERROR',
@@ -45,7 +45,8 @@ function validationRegister(formikHook: Function, modalParamsHook: Function) {
                             navLinkText: '',
                         })
                     }
-                })
+                });
+                formikRegister.resetForm({values: ''});
         }
     });
 

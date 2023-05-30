@@ -18,7 +18,7 @@ function validationLogin(formikHook: Function, modalParamsHook: Function, naviga
                 .required('Please fill password'),
         }),
         onSubmit: (values: TFormikValues) => {
-            fetch('http://localhost:4000/users')
+            fetch('http://localhost:3000/users')
                 .then(response => response.json())
                 .then((data: Array<TFormikValues>) => {
                     //db.json contains more then 0
@@ -43,14 +43,14 @@ function validationLogin(formikHook: Function, modalParamsHook: Function, naviga
                                     break;
                                 }
                             }
+                            //unsuccessful login
+                            modalParamsHook({
+                                title: 'LOGIN ERROR',
+                                message: 'User don\'t exists.',
+                                navLinkPath: '/Register',
+                                navLinkText: 'don\'t have account?'
+                            });
                         }
-                        //unsuccessful login
-                        modalParamsHook({
-                            title: 'LOGIN ERROR',
-                            message: 'User don\'t exists.',
-                            navLinkPath: '/Register',
-                            navLinkText: 'don\'t have account?'
-                        })
                         //no users in db.json
                     } else {
                         modalParamsHook({
@@ -58,9 +58,13 @@ function validationLogin(formikHook: Function, modalParamsHook: Function, naviga
                             message: 'User don\'t exists.',
                             navLinkPath: '/Register',
                             navLinkText: 'don\'t have account?'
-                        })
+                        });
                     }
                 })
+                .catch(error => {
+                    console.log('something went wrong !')
+                })
+            formikLogin.resetForm({ values: '' });
         }
     });
 

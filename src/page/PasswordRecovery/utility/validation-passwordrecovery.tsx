@@ -9,7 +9,8 @@ function validationPasswordRecovery(formikHook: Function, sendEmail: Function) {
             email: Yup.string().email('Invalid email').required('Required'),
         }),
         onSubmit: (values: any, event: any) => {
-            sendEmail(event)
+            sendEmail(event);
+            formikPasswordRecovery.resetForm({ values: '' });
         }
     })
 

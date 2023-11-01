@@ -1,5 +1,17 @@
 :root {
+    /*COLOR*/
     --color-bg-app: #6d9ac4;
     --color-bg-user-form: #ffffff;
-    --color-login-button: #ee5684;
+    --color-bg-user-form-login-button: #ee5684;
+    --color-bg-user-form-login-button-hover: #ee6e95;
+    --color-border-user-form-input: #bebebe;
+    --color-font-user-form-h3: #646464;
+    --color-font-user-form-label: #646464;
+    /*FONT*/
+    --font-main: Arial, sans-serif;
+    --fonrt-size-user-form-h3: 2rem;
+    --font-size-user-form-label: 1.25rem;
+    --font-size-user-form-a: 1.15rem;
+    /*SHADOW*/
+    --user-form-shadow: #00000059 0 .5rem 1.5rem;
 }

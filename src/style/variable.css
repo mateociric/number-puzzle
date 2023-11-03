@@ -1,17 +1,19 @@
 :root {
     /*COLOR*/
-    --color-bg-app: #6d9ac4;
-    --color-bg-user-form: #ffffff;
-    --color-bg-user-form-login-button: #ee5684;
-    --color-bg-user-form-login-button-hover: #ee6e95;
-    --color-border-user-form-input: #bebebe;
-    --color-font-user-form-h3: #646464;
-    --color-font-user-form-label: #646464;
+    --pure-white: #ffffff;
+    --pure-black: #000;
+    --light-grey-1: #eff2f1;
+    --light-grey-2: #e1e1e1;
+    --light-grey-3: #bebebe;
+    --grey: #787878;
+    --pink: #fc3441;
+    --light-pink: #fc4b57;
+    --blue: #0070f0;
     /*FONT*/
-    --font-main: Arial, sans-serif;
-    --fonrt-size-user-form-h3: 2rem;
-    --font-size-user-form-label: 1.25rem;
-    --font-size-user-form-a: 1.15rem;
+    --fn-main: Arial, sans-serif;
+    --fn-size-title: 2rem;
+    --fn-size-text: 1.25rem;
+    --fn-size-button: 1.5rem;
     /*SHADOW*/
-    --user-form-shadow: #00000059 0 .5rem 1.5rem;
+    --form-shadow: #3c40434d 0 .1rem .2rem 0, #3c404326 0 .2rem .6rem .2rem;
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
     selector: 'player-login-form',
@@ -12,8 +13,10 @@ export class PlayerLoginFormComponent implements OnInit {
     btnText: string = '';
     link: string = '';
 
-    constructor(private route: ActivatedRoute, private router: Router) {
-
+    constructor(
+        private route: ActivatedRoute,
+        private router: Router,
+        private afAuth: AngularFireAuth) {
     }
 
     ngOnInit(): void {
@@ -32,6 +35,24 @@ export class PlayerLoginFormComponent implements OnInit {
     }
     onRedirect() {
         this.link === "Don't have account? Signup" ? this.router.navigate(['/Signup']) : this.router.navigate(['/Login']);
+    }
+    onSignup(email: string, password: string) {
+        this.afAuth.createUserWithEmailAndPassword(email, password)
+            .then(userCredential => {
+                console.log('OK');
+            })
+            .catch(error => {
+                console.log('WRONG');
+            })
+    }
+    onLogin(email: string, password: string) {
+        this.afAuth.signInWithEmailAndPassword(email, password)
+            .then(userCredential => {
+                console.log('OK');
+            })
+            .catch(error => {
+                console.log('WRONG');
+            })
     }
 
 }

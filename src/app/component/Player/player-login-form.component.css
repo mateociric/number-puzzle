@@ -45,11 +45,10 @@ div {
     margin-bottom: 2rem;
     border: .1rem solid var(--pure-white);
     border-radius: .25rem;
-    padding-left: 1rem;
+    padding-left: .5rem;
     
     line-height: 4.25rem;
     color: var(--pure-black);
-    
     background: linear-gradient(0deg, var(--light-grey-2) var(--p1), #ffffff var(--p2));
     transition: --p1 .25s, --p2 .25s;
 }

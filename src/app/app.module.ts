@@ -3,27 +3,26 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireAuthModule } from '@angular/fire/compat/auth';
-import { firebaseConfig } from 'src/enviroment/firebase.config';
-import { PlayerLoginFormComponent } from './component/Player/player-login-form.component';
-import { LoginPageComponent } from './page/LoginPage/login-page.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http'; //da bi se izbjegla greška 'NULL injector ...' mora se u app.module.ts import HttpClientModule. Ova greška se javlja kad se koristi HttpClient u drugim component. 
+import { Auth } from './component/Auth/auth.component';
+import { SigninPageComponent } from './page/SigninPage/signin-page.component';
 import { SignupPageComponent } from './page/SignupPage/signup-page.component';
 import { GamePageComponent } from './page/GamePage/game-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PlayerLoginFormComponent,
-    LoginPageComponent,
+    Auth,
+    SigninPageComponent,
     SignupPageComponent,
     GamePageComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireAuthModule,
+    FormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,12 +1,12 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 
-import { LoginPageComponent } from "./page/LoginPage/login-page.component";
+import { SigninPageComponent } from "./page/SigninPage/signin-page.component";
 import { SignupPageComponent } from "./page/SignupPage/signup-page.component";
 import { GamePageComponent } from "./page/GamePage/game-page.component";
 
 const appRoutes: Routes = [
-    { path: 'Login', component: LoginPageComponent },
+    { path: 'Signin', component: SigninPageComponent },
     { path: 'Signup', component: SignupPageComponent },
     { path: 'Game', component: GamePageComponent },
 ]

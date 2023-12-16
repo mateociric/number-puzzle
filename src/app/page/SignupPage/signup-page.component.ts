@@ -6,7 +6,6 @@ import { Component } from "@angular/core";
     styleUrls: ['./signup-page.component.css']
 })
 
-export class SignupPageComponent
- {
-    
+export class SignupPageComponent {
+
 }

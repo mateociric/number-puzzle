@@ -9,7 +9,7 @@
     initial-value: 100%;
 }
 
-div {
+.auth-container {
     width: 25%;
     position: absolute;
     top: 50%;
@@ -17,7 +17,7 @@ div {
     transform: translate(-50%, -50%);
 }
 
-.form-container__player-login {
+.auth-container form {
     border-radius: 1rem;
     padding: 4rem;
 
@@ -29,19 +29,19 @@ div {
     box-shadow: var(--form-shadow);
 }
 
-.form-container__player-login h3 {
+.auth-container h3 {
     margin-bottom: 4rem;
     font-size: var(--fn-size-title);
     color: var(--grey);
 }
 
-.form-container__player-login label {
+.auth-container label {
     margin-bottom: .75rem;
     font-size: var(--fn-size-text);
     color: var(--grey)
 }
 
-.form-container__player-login input {
+.auth-container input {
     margin-bottom: 2rem;
     border: .1rem solid var(--pure-white);
     border-radius: .25rem;
@@ -53,14 +53,14 @@ div {
     transition: --p1 .25s, --p2 .25s;
 }
 
-.form-container__player-login input:focus {
+.auth-container input:focus {
     outline: none;
     border-bottom: .1rem solid var(--grey);
     --p1: 0%;
     --p2: 0%;
 }
 
-.form-container__player-login button {
+.auth-container button {
     width: 50%;
     margin: 2rem auto 0;
     border: none;
@@ -73,22 +73,22 @@ div {
     background-color: var(--pink);
 }
 
-.form-container__player-login button:hover {
+.auth-container button:hover {
     background-color: var(--light-pink);
 }
 
-.form-container__player-login button:active {
+.auth-container button:active {
     transform: scale(.96);
 }
 
-.form-container__player-login a {
+.auth-container a {
     margin: 2rem auto 0;
     font-size: var(--fn-size-text);
     text-decoration: none;
     color: var(--blue);
 }
 
-.form-container__player-login a:hover {
+.auth-container a:hover {
     text-decoration: underline;
     cursor: default;
 }

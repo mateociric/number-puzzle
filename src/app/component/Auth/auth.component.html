@@ -1,0 +1,11 @@
+<div class="auth-container">
+    <form (ngSubmit)="onSubmit(authForm)" #authForm="ngForm" class="animate__bounceIn">
+        <h3>{{isSignin ? "Sign In" : "Sign Up"}}</h3>
+        <label for="email">Email address</label>
+        <input type="email" name="email" id="email" ngModel required email #email="ngModel">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" ngModel required password #passwod="ngModel">
+        <button type="submit" class="btn-glow">{{isSignin ? "Sign In" : "Sign Up"}}</button>
+        <a (click)="onRedirect()">{{isSignin ? "New to game. Create account." : "Back to sign in"}}</a>
+    </form>
+</div>

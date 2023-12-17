@@ -3,6 +3,7 @@
     inherits: false;
     initial-value: 100%;
 }
+
 @property --p2 {
     syntax: '<percentage>';
     inherits: false;
@@ -15,6 +16,13 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.error {
+    font-family: var(--fn-main);
+    font-size: var(--fn-size-text);
+    text-align: center;
+    color: rgb(255, 0, 0);
 }
 
 .auth-container form {
@@ -46,7 +54,7 @@
     border: .1rem solid var(--pure-white);
     border-radius: .25rem;
     padding-left: .5rem;
-    
+
     line-height: 4.25rem;
     color: var(--pure-black);
     background: linear-gradient(0deg, var(--light-grey-2) var(--p1), #ffffff var(--p2));

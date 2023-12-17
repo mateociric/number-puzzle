@@ -6,3 +6,7 @@ export type TAuthResponseData = {
     localId: string,
     registered?: boolean,
 }
+
+export type TAuthResponseError = {
+    message: string
+}

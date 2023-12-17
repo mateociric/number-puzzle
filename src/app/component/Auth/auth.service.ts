@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-import { TAuthResponseData } from "./auth.model";
+import { TAuthResponseData, TAuthResponseError } from "./auth.model";
 import { throwError } from "rxjs";
 
 @Injectable({ providedIn: 'root' })
@@ -26,20 +26,19 @@ export class AuthService {
                 returnSecureToken: true,
             })
     }
-    onHandleError(errorRes: HttpErrorResponse, isSignin: boolean) {
-        let errorMsg = `An error occurred during sign ${isSignin ? 'in' : 'up'}.`;
+    onHandleError(errorRes: HttpErrorResponse, isSignin: boolean, authResError: TAuthResponseError) {
+        authResError.message = `An error occurred during sign ${isSignin ? 'in' : 'up'}.`;
         if (!errorRes.error || !errorRes.error.error) {
-            return throwError(() => errorMsg);
+            return throwError(() => authResError.message);
         }
         switch (errorRes.error.error.message) {
             case 'EMAIL_EXISTS':
-                errorMsg = 'This email address is already used.'
+                authResError.message = 'This email address is already used.'
                 break;
             case 'INVALID_LOGIN_CREDENTIALS':
-                errorMsg = 'Wrong email address or password.';
+                authResError.message = 'Wrong email address or password.';
                 break;
         }
-        console.log(errorMsg);
-        return throwError(() => errorMsg);
+        return throwError(() => authResError.message);
     }
 }

@@ -5,6 +5,7 @@
         <input type="email" name="email" id="email" ngModel required email #email="ngModel">
         <label for="password">Password</label>
         <input type="password" name="password" id="password" ngModel required password #passwod="ngModel">
+        <p *ngIf="error.message" class="error">{{error.message}}</p>
         <button type="submit" class="btn-glow">{{isSignin ? "Sign In" : "Sign Up"}}</button>
         <a (click)="onRedirect()">{{isSignin ? "New to game. Create account." : "Back to sign in"}}</a>
     </form>

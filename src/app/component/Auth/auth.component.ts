@@ -1,7 +1,8 @@
-import { Component, OnInit, Type } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { NgForm } from "@angular/forms";
 import { AuthService } from "./auth.service";
+import { TAuthResponseError } from "./auth.model";
 
 @Component({
     selector: 'auth',
@@ -11,6 +12,9 @@ import { AuthService } from "./auth.service";
 
 export class Auth implements OnInit {
     isSignin = true;
+    error: TAuthResponseError = {
+        message: '',
+    };
 
     constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService) { }
 
@@ -37,12 +41,12 @@ export class Auth implements OnInit {
         if (this.isSignin) {
             this.authService.signIn(email, password).subscribe({
                 next: (resData) => console.log(resData),
-                error: (errorRes) => this.authService.onHandleError(errorRes, this.isSignin),
+                error: (errorRes) => this.authService.onHandleError(errorRes, this.isSignin, this.error),
             })
         } else {
             this.authService.signUp(email, password).subscribe({
                 next: (resData) => console.log(resData),
-                error: (errorRes) => this.authService.onHandleError(errorRes, this.isSignin),
+                error: (errorRes) => this.authService.onHandleError(errorRes, this.isSignin, this.error)
             })
         }
         authForm.reset();

@@ -18,14 +18,7 @@
     transform: translate(-50%, -50%);
 }
 
-.error {
-    font-family: var(--fn-main);
-    font-size: var(--fn-size-text);
-    text-align: center;
-    color: rgb(255, 0, 0);
-}
-
-.auth-container form {
+.auth-form {
     border-radius: 1rem;
     padding: 4rem;
 
@@ -37,19 +30,24 @@
     box-shadow: var(--form-shadow);
 }
 
-.auth-container h3 {
+.auth-form h3 {
     margin-bottom: 4rem;
     font-size: var(--fn-size-title);
     color: var(--grey);
 }
 
-.auth-container label {
+.auth-form label {
     margin-bottom: .75rem;
     font-size: var(--fn-size-text);
     color: var(--grey)
 }
 
-.auth-container input {
+/*select adjacent previous sibling*/
+.auth-form label:has(+ input.ng-invalid.ng-touched) {
+    color: var(--pure-red);
+}
+
+.auth-form input {
     margin-bottom: 2rem;
     border: .1rem solid var(--pure-white);
     border-radius: .25rem;
@@ -57,19 +55,26 @@
 
     line-height: 4.25rem;
     color: var(--pure-black);
-    background: linear-gradient(0deg, var(--light-grey-2) var(--p1), #ffffff var(--p2));
+    background: linear-gradient(0deg, var(--light-grey-2) var(--p1), var(--pure-white) var(--p2));
     transition: --p1 .25s, --p2 .25s;
 }
 
-.auth-container input:focus {
+.auth-form input:focus {
     outline: none;
     border-bottom: .1rem solid var(--grey);
     --p1: 0%;
     --p2: 0%;
 }
 
-.auth-container button {
-    width: 50%;
+.auth-form p {
+    font-family: var(--fn-main);
+    font-size: var(--fn-size-text);
+    text-align: center;
+    color: var(--pure-red);
+}
+
+.auth-form button {
+    width: 35%;
     margin: 2rem auto 0;
     border: none;
     border-radius: .5rem;
@@ -81,26 +86,26 @@
     background-color: var(--pink);
 }
 
-.auth-container button:hover {
+.auth-form.ng-invalid button {
+    opacity: .5;
+}
+
+.auth-form.auth-form.ng-valid button:hover {
     background-color: var(--light-pink);
 }
 
-.auth-container button:active {
+.auth-form.ng-valid button:active {
     transform: scale(.96);
 }
 
-.auth-container a {
+.auth-form a {
     margin: 2rem auto 0;
     font-size: var(--fn-size-text);
     text-decoration: none;
     color: var(--blue);
 }
 
-.auth-container a:hover {
+.auth-form a:hover {
     text-decoration: underline;
     cursor: default;
-}
-
-input.ng-invalid.ng-touched {
-    outline: .1rem solid red;
 }

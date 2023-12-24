@@ -50,5 +50,6 @@ export class Auth implements OnInit {
             })
         }
         authForm.reset();
+        this.error.message = '';
     }
 }

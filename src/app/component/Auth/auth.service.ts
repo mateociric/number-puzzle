@@ -2,12 +2,14 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { TAuthResponseData, TAuthResponseError } from "./auth.model";
 import { throwError } from "rxjs";
+import { User } from "./user.model";
+import { BehaviorSubject } from "rxjs";
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
     private urlSignup: string = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBtYOvpeUQPxXNAttmbM2oC_2S2lN5D-30';
     private urlSignin: string = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBtYOvpeUQPxXNAttmbM2oC_2S2lN5D-30';
-
+    user = new BehaviorSubject<User>(null)
     constructor(private http: HttpClient) { }
 
     signUp(email: string, password: string) {
@@ -40,5 +42,9 @@ export class AuthService {
                 break;
         }
         return throwError(() => authResError.message);
+    }
+    onHandleAuth(email: string) {
+        const user = new User(email);
+        this.user.next(user);
     }
 }

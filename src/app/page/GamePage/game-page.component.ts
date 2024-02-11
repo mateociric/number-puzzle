@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 
 @Component({
     selector: 'game-page',
@@ -6,6 +6,4 @@ import { Component } from "@angular/core";
     styleUrls: ['./game-page.component.css'],
 })
 
-export class GamePageComponent {
-    
-}
+export class GamePageComponent { }

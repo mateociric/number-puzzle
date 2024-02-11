@@ -9,11 +9,13 @@ import { Auth } from './component/Auth/auth.component';
 import { SigninPageComponent } from './page/SigninPage/signin-page.component';
 import { SignupPageComponent } from './page/SignupPage/signup-page.component';
 import { GamePageComponent } from './page/GamePage/game-page.component';
+import { Header } from './component/Header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     Auth,
+    Header,
     SigninPageComponent,
     SignupPageComponent,
     GamePageComponent,

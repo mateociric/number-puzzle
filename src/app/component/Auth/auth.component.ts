@@ -40,7 +40,7 @@ export class Auth implements OnInit {
         const password = authForm.value.password;
         if (this.isSignin) {
             this.authService.signIn(email, password).subscribe({
-                next: (resData) => console.log(resData),
+                next: (resData) => { this.router.navigate(['/Game']); console.log(resData); this.authService.onHandleAuth(resData.email) },
                 error: (errorRes) => this.authService.onHandleError(errorRes, this.isSignin, this.error),
             })
         } else {

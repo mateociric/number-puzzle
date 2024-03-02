@@ -1,0 +1,8 @@
+.reset-buttons {
+    width: 50%;
+    display: flex;
+}
+
+.reset-buttons button {
+    flex: 0 1 33.33%;
+}

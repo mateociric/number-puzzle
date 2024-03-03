@@ -1,4 +1,7 @@
 .puzzle-table {
-    width: 50%;
+    min-width: 50rem;
+    min-height: 50rem;
+    display: grid;
+    gap: .5%;
     background-color: #ff7300;
 }

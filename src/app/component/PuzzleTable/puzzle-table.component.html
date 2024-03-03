@@ -1,1 +1,5 @@
-<div class="puzzle-table"></div>
+<div class="puzzle-table" [style]="grid">
+    <ng-container *ngFor="let _ of puzzleArray; index as i">
+        <app-single-puzzle *ngIf="i < puzzleArray.length" [number]="puzzleArray[i]"></app-single-puzzle>
+      </ng-container>
+</div>

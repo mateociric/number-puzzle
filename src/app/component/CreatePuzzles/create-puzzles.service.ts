@@ -5,7 +5,7 @@ import { BehaviorSubject } from "rxjs";
 
 export class CreatePuzzleService {
 
-    private _puzzlesArrangement = new BehaviorSubject<number[]>([]);
+    private _puzzlesArrangement = new BehaviorSubject<number[]>([1, 2, 3, 4, 5, 6, 7, 8, 9]);
 
     constructor() { }
 
